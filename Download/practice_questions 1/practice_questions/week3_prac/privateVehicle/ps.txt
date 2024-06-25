@@ -1,0 +1,37 @@
+create a class tourist vehicle with following attributes
+
+registered number of type str
+vehicle price of type float
+vehicle type which is either cab, bus or other
+permit which is a reference wrapper to an instance of type permit
+a member function that can calculate permit renewal cost based on the following criteria
+    - for cab and bus type of vehicle, cost is 15% of vehicle_price
+    -for other type of vehicles, cost is 10% of vehicle_price
+-operator << overlaoding to display params
+-getter and setter for relevant data member
+
+create a class private vehicle with the following attributes 
+    - registered num of type string
+    - vehicle price of type float
+    -vehicle engine type which is PETROL, DIESEL OR HYBRID
+    -a member function that can calculate gst cost for vehicle as 5% OF THE VEHICLE price
+
+create a class permit with following attributes
+    permitnumber str
+    permit expiry year which is a number between 2024 to 2009 (inclusive)
+
+create following functionalities in the class operations:
+
+    a) createobjects member functions which craetes 2 objects of type privatevehicle
+    and 3 objects of type tourist vehicle  on the heap(managed by smart ptr). 
+    these objectsneed to be stored in the same container which is a data member of class oeprations(called: m_data) 
+    the containershould be a list container
+
+    b) a function to return average vehicle_price of all touristvehicle osnitance fmo m_data 
+
+    c) a function to return a boolean to indicate whether all instances have a vehicle_price 
+    above 500000.0f (5 lac)
+
+    d) a function to return a container of privatevehicle samrt ptr fom relevant isntances in the 
+    m_data container  
+

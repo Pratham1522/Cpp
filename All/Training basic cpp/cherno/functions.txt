@@ -1,0 +1,3 @@
+functions are block of code designed to perform particular task.
+functions in class is called as methods.
+it is used to avoid code duplications.

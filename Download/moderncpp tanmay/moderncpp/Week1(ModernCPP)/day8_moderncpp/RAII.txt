@@ -1,0 +1,27 @@
+RESOURCE ACQUISITION IS INITIALIZATION (principle)
+acquiring resource (heap memory for customer) is same as initializing an owner
+
+Whatever my program accesses to complete its opeartiosn are basically called "Resources".
+    -heap memory
+    -files
+    -connection pointers
+    -semaphores/mutexes (synchronization primitives)
+
+
+template<typename T>
+class Wrapper(){
+    private:
+        T* m_ptr;
+
+    Wrapper(T* p) : m_ptr{p}
+    public:
+        ~Wrapper(){delete m_ptr;}
+};
+
+
+void Magic(){
+    int *ptr = (int*)malloc(20);
+    Wrapper c(new Customer());
+}
+
+//THIS IS CALLED CONNECTING RESOURCE TO LIFETIME OF OBJECTS AND CALLED IT AS SMART POINTERS.

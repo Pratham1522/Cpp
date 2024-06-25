@@ -1,0 +1,213 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+
+namespace nm82
+{
+	class CA
+	{
+	private:
+		int a{ 100 };
+	protected:
+		int b{ 200 };
+	public:
+		int c{ 300 };
+		void DisplayCA()
+		{
+			cout << "CA::Display\n";
+			cout << "a=" << a << '\n';
+			cout << "b=" << b << '\n';
+			cout << "c=" << c << '\n';
+		}
+		friend class CB_Pub_friend; //vertical access control
+	};
+	class CB_Pub_friend :public CA
+	{
+	public:
+		void DisplayCB_Pub_friend()
+		{
+			cout << "CB_Pub_friend::Display\n";
+			cout << "a=" << a << '\n';
+			cout << "b=" << b << '\n';
+			cout << "c=" << c << '\n';
+		}
+	};
+	class CB_Pub :public CA
+	{
+	private:
+		using CA::b;//vertical access control
+	protected:
+		CA::c; //using is optional
+	public:
+		void DisplayCB_Pub_friend()
+		{
+			cout << "CB_Pub_friend::Display\n";
+			//cout << "a=" << a << '\n';//error inacessible
+			cout << "b=" << b << '\n';
+			cout << "c=" << c << '\n';
+		}
+	};
+	class CB_Pub_Derived : public CB_Pub
+	{
+	public:
+		void DisplayCB_Pub_Derived()
+		{
+			cout << "CB_Pub_Derived::Display\n";
+			//cout << "b=" << b << '\n';//error inacessible
+			cout << "c=" << c << '\n';
+		}
+	};
+
+	class CB_Prot :protected CA
+	{
+	private:
+		using CA::b;
+	public:
+		using CA::c;
+		void DisplayCB_Prot()
+		{
+			cout << "CB_Pub_friend::Display\n";
+			//cout << "a=" << a << '\n';//error inacessible
+			cout << "b=" << b << '\n';
+			cout << "c=" << c << '\n';
+		}
+	};
+
+
+	class CB_Pvt :private CA
+	{
+	public:
+		using CA::c;
+		void DisplayCB_Prot()
+		{
+			cout << "CB_Pub_friend::Display\n";
+			//cout << "a=" << a << '\n';//error inacessible
+			cout << "b=" << b << '\n';
+			cout << "c=" << c << '\n';
+		}
+	};
+
+
+	int main1()
+	{
+		line(CA);
+		CA obj1;
+		obj1.c = 999;
+		obj1.DisplayCA();
+
+		line(CB_Pub_friend);
+		CB_Pub_friend obj2;
+		obj2.c = 888;
+		obj2.DisplayCA();
+		obj2.DisplayCB_Pub_friend();
+
+		line(CB_Pub_Derived);
+		CB_Pub_Derived obj3;
+		//obj3.c = 987;//error inacessible
+		obj3.DisplayCA();
+		obj3.DisplayCB_Pub_Derived();
+
+
+		return 0;
+	}
+
+
+	class MyMethod
+	{
+	public:
+		void AddFun(int)
+		{
+			cout << "MyMethod::AddFun(int)\n";
+		}
+		void AddFun(int, int)
+		{
+			cout << "MyMethod::AddFun(int,int)\n";
+		}
+		void fun()
+		{
+			cout << "MyMethod::fun\n";
+		}
+	};
+
+	class MyMethodEx : public MyMethod
+	{
+	public:
+		using MyMethod::AddFun;
+
+		//void AddFun(int x, int y) //base function hidden
+		//{
+		//	//cout << "MyMethodEx::AddFun(int,int )\n";
+		//	//MyMethod::AddFun(x, y);
+		//}
+
+		void AddFun(int, int, int)
+		{
+			cout << "MyMethodEx::AddFun(int,int,int )\n";
+		}
+
+		void fun()
+		{
+			cout << "MyMethodEx::fun\n";
+		}
+	};
+
+
+	int main2()
+	{
+		MyMethodEx obj;
+		obj.AddFun(10);
+		obj.AddFun(10, 20);
+		obj.AddFun(10, 20, 30);
+
+
+		//obj.fun();
+		line();
+		return 0;
+	}
+
+	template<typename T>
+	class My_Vector :vector<T>
+	{
+	public:
+		using vector<T>::push_back;
+		using vector<T>::pop_back;
+		void PushAll()
+		{
+		}
+		template<typename T1, typename... T2>
+		void PushAll(T1 x, T2... pck)
+		{
+			this->push_back(x);
+			PushAll(pck...);
+		}
+		friend ostream& operator<<(ostream& os, My_Vector& v)
+		{
+			for (int i = 0; i < v.size(); i++)
+			{
+				os << v[i] << '\t';
+			}
+			os << '\n';
+			return os;
+		}
+	};
+
+	int main()
+	{
+		My_Vector<int> vec;
+		vec.push_back(10);
+		vec.push_back(20);
+		vec.push_back(30);
+		vec.push_back(40);
+		cout << vec << '\n';
+		line();
+		vec.PushAll(50, 60, 70, 80, 90, 100);
+		cout << vec << '\n';
+		line();
+		vec.pop_back();
+		cout << vec << '\n';
+
+		return 0;
+	}
+
+}

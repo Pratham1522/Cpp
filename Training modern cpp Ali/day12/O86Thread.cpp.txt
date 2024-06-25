@@ -1,0 +1,135 @@
+#include<iostream>
+#include<string>
+#include<thread>
+#include<mutex>
+#include<future>
+#include<sstream>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+
+namespace nm86
+{
+	string get_tid(std::thread::id id)
+	{
+		stringstream sst;
+		sst << id;
+		return sst.str();
+	}
+
+	//g++ file.cpp -pthread
+	int main1()
+	{
+		//this_thread::sleep_for(chrono::milliseconds(1));
+		promise<int> prom;
+		future<int> fut = prom.get_future();
+		prom.set_value(190);
+		int result = fut.get();
+		cout << "Result = " << result << '\n';
+		return 0;
+	}
+
+	void fun(promise<int>* prm)
+	{
+		for (int x = 1; x <= 10; x++)
+		{
+			string str = "\t\t\tfun x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+			if (4 == x)
+			{
+				prm->set_value(9876);
+			}
+		}
+	}
+
+	int main2()
+	{
+		promise<int> prom;
+		future<int> fut = prom.get_future();
+		thread t1(fun, &prom);
+		cout << "Main Waiting \n";
+		int res = fut.get();
+		cout << "result = " << res << '\n';
+		t1.join();
+		cout << "Main done\n";
+		return 0;
+	}
+
+
+
+	void fun1(promise<int>* prm)
+	{
+		for (int x = 1; x <= 10; x++)
+		{
+			string str = "\t\t\tfun1 x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+			if (7 == x)
+			{
+				prm->set_value(999);
+			}
+		}
+	}
+
+	void fun2(future<int>* fut)
+	{
+		cout << "fun2 started \n";
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "fun2 on \n";
+		int res = fut->get();
+		cout << "result = " << res << '\n';
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "fun2 done \n";
+	}
+
+	int main3()
+	{
+		promise<int> prom;
+		future<int> fut = prom.get_future();
+		thread t1(fun1, &prom);
+		thread t2(fun2, &fut);
+
+		t1.join();
+		t2.join();
+		cout << "Main done\n";
+		return 0;
+	}
+
+	void fun11(promise<int>&& prm)
+	{
+		for (int x = 1; x <= 10; x++)
+		{
+			string str = "\t\t\tfun11 x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+			if (7 == x)
+			{
+				prm.set_value(999);
+			}
+		}
+	}
+
+	void fun22(future<int>&& fut)
+	{
+		cout << "fun22 started \n";
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "fun22 on \n";
+		int res = fut.get();
+		cout << "result = " << res << '\n';
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "fun22 done \n";
+	}
+
+	int main()
+	{
+		promise<int> prom;
+		future<int> fut = prom.get_future();
+		thread t1(fun11, std::move(prom));
+		thread t2(fun22, std::move(fut));
+
+		t1.join();
+		t2.join();
+		cout << "Main done\n";
+		return 0;
+	}
+}

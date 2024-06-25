@@ -1,0 +1,24 @@
+1. i dont understand what to write next!
+    examples:   whether it is pointer -> or . operator
+                i dont know which is  function, which is a member,
+                they all look similar
+
+                _id;
+                std::string id() const{ return _id;}
+                Magic(std::vector<Vehicle*>& data, int id)
+
+2.  Comprehension skills!
+3.  lack of awareness!
+
+
+tip 1:  make folder first
+tip 2: do not make multiple files open.
+tip 3:   dont use touchpad
+tip 4:   complete code of that file which has no dependency to reduce errors.
+tip 5:  sequence of data members and parameters must be in same order
+tip 6:  double check if mapping is correct or not.
+tip 7:  before 1st compilation, re read the program.
+tip 8:  clean code. use comments.
+tip 9:  
+tip 10: 
+

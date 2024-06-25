@@ -1,0 +1,134 @@
+Day1 
+Initlist -> order of initialization will map to order of declaration.
+initialization vs assignment
+ctor -> call locations
+dtor -> call locations
+return -> expansion -> temp objects
+prolog and epilog
+new operator -> expansion -> temp pointers
+delete operator -> expansion
+
+exception
+catch-table
+stack unwinding
+throw
+rethrow
+replace
+catch exp by value
+catch exp by ref
+throwing exception from ctor
+throwing exception from D-tor
+singleton
+friend class
+operator overloading
+new,delete,new[],delete[],->,*
+
+Day2
+
+default (compiler synthesized ctor)
+default constructors…are generated (by the compiler) where needed…." 
+
+1.  If a class without any constructors is derived from a base class containing a default constructor, 
+the default constructor for the derived class needs to be synthesized. 
+
+2. If a class without any constructors contains a member object of a class with a default constructor, the compiler needs to synthesize a default constructor for the containing class. 
+
+3. Class with a Virtual Function and  no ctor. to set vptr to vtable default ctor is synthesized.
+
+4.  ??  Class with a Virtual Base Class ?? 
+
+
+using type alias : modern c++
+override : modern c++
+?? deleted functions ??
+1. yagni -> you arn't gonna need it
+2. High cohession
+3. SRP -> Single Responsibility Priniciple
+4. Kiss -> keep it simple and stupid
+5. Dry/Die/Wet/Oaoo -> dont repeat yourself/duplication is evil/We Enjoy typing/Once and only once
+6. LSP -> Liskov's Substitution Principle
+
+Template Method Pattern
+
+
+Day 3
+non static member initialization : from modern C++ onwards
+uniform initialization : bra ce initialization : modern c++ onwards
+explicit multiparam ctor from modern c++ onwards
+
+conversion ctor
+assingment operator
+explcit ctor
+conversion operator or casting operator
+explicit conversion operator : modern c++
+friend class
+nested class
+use of proxy class 
+Copy ctor
+deep copy
+shallow copy : ownership transfer
+Idiom : copy and swap
+reference counting
+??handle body??
+
+
+
+day 4
+
+new[] operator
+delete[] operator
+default and deleted functions
+naming convention
+constexpr 
+if constexpr : c++17
+typoe deduce
+typeinference
+auto
+decltype
+static_assert
+avoid template bloat
+
+
+
+day 5
+r-value object
+r-value reference
+move ctor
+packing and unpacing parameters
+variadic templates
+universal reference
+std::move
+std::forward
+perfect forwarding
+unique_ptr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

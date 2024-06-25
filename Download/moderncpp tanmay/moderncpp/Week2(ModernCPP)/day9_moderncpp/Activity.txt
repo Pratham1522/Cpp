@@ -1,0 +1,13 @@
+ACTIVITY DIAGRAM
+
+Explains how an activity completes.
+
+1) activity starts in filled circles.
+2) arrows indicate flow control.
+3) lanes tell you how many entities are involved in there.
+4) flow node means 1 input multiple output
+5) diamond is decision T or F 
+6) join node means multiple input 1 output.
+7) END means 2 circles inside cirle is filled. 
+
+lambdas, ...

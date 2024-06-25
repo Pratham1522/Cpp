@@ -1,0 +1,19 @@
+1. public ,private ,protected
+2. mutable 
+3. const
+4. static
+5. initializer list  : 
+6. inspector  : function with const keyword. : check the state of cosntant object must not be changed.
+7. mutator  : change values of variables. : change the state of object.
+8. fflush() 
+9. extern  : used with global var to use in another file.
+10. constructor call :
+
+
+11. endl = '\n' + flush buffer.
+# copy constructor const is mandatory.
+delete operator vs operator delete
+stack unwinding
+
+virtual function
+

@@ -1,0 +1,58 @@
+#include<iostream>
+#include<string>
+#include<thread>
+#include<mutex>
+#include<future>
+#include<sstream>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+/*
+void BookTicket(string vendor, int min_time)
+{
+	string st = vendor + " Trying to book the ticket \n";
+	cout << st;
+	this_thread::sleep_for(chrono::seconds(min_time));
+	st = vendor + " successfully Booked the ticket \n";
+	cout << st;
+}
+
+int main()
+{
+	thread t1(BookTicket, "IRCTC", 4);
+	thread t2(BookTicket, "IBIBO", 2);
+	thread t3(BookTicket, "YATRA", 3);
+
+
+	t1.join();
+	t2.join();
+	t3.join();
+	return 0;
+}
+*/
+
+
+std::once_flag flag;
+void BookTicket(string vendor, int min_time)
+{
+	string st = vendor + " Trying to book the ticket \n";
+	cout << st;
+	this_thread::sleep_for(chrono::seconds(min_time));
+	std::call_once(flag, [vendor]() {
+		string st = vendor + " successfully Booked the ticket \n";
+		cout << st;
+		});
+	
+}
+
+int main()
+{
+	thread t1(BookTicket, "IRCTC", 4);
+	thread t2(BookTicket, "IBIBO", 2);
+	thread t3(BookTicket, "YATRA", 3);
+
+
+	t1.join();
+	t2.join();
+	t3.join();
+	return 0;
+}

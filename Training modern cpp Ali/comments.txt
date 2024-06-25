@@ -1,0 +1,96 @@
+1. send a set of promises and recive a set of futures
+- use vector or queue
+- use string concatenation to display output in multithreading or the output will get split.
+- snchronised call : sequentail .
+- Asnchronised call : parallel execution.
+- to get a return value from thread you need promise n future ad for that a wrapper class.
+- same result can be get through std::async function , it do all inbuild(thread and promise) and return future.
+- if we didnt recieve a async future then it dies at that line only.
+- async function destructor has a 
+- class template auto deduction
+
+-aggregation : not born with me,joins me , dies with me. 
+- associaton : born with me and will not die with me.
+-compositon :  not born with me , not dies with me.
+
+* create a wrapper class whenever you want to send some data that needed to be converted.
+* add -pthreads to run.
+
+#asked to learn
+ -conditional variable
+ -lock guard
+ -async vs deferred
+ -how to cancel a thread from outside.
+ -parallel computing
+ 
+ -decorator : encode + encrypt +sign +send
+ behaviour gets extended
+ 
+ chain of responsibility
+ abstract factory
+ template method : base flow, derieved variations
+
+
+//1. for any requirement : find boundary for system,( what you want to do) : called system. (Rectangle)
+
+//2. use is gonna use the system (internal actors),what the system is going to use. (external actors): called as actor (skelton)
+// (indirect actors) : investors, stakeholders
+// actor has a name : eg $ professor            student $ 
+
+//3. identify usecases for every actor.
+//operator : switch on, switch off, remove envolope
+//customer : request cash withdrawal-take cash, deposit a account,transfer money,balance enquiery
+//bank : validate transaction, validate envolope,
+
+//4. detailed all usecases.
+name : (withdraw)
+who is primary actor : (customer)
+trigger : when the usecase start
+preconditions : what must be ready for usecase to start
+minimal guarantee : what guarantee will be given
+postconditions : 
+main flow : minimal steps no brances
+alternate flows : branches(wrong pin)
+
+//5. identify analysis classes
+a) boundary |-O  (speaks to the actor) : console,printer,dispenser ,bank communication
+b) controller <o : withdraw controller
+c) entity _O (storage) : logs
+
+//6. distribute behaviour between analysis classes
+
+// create class 
+//for no of functions : see number of arrow coming towards the class in collabaration diagram.
+class console{
+    void getdetails(accType , amount) {}
+}
+
+//sequence diagram
+
+// ## Day 17
+- optional : if return value fails ,what it should be replaced with.
+- nullopt and {} are same 
+- optional is a smart pointer for whatever you are hosting.
+- fun().value_or("alternative") : replace nullopt with alternative.
+- to make changes in return value use reference wrapper.
+
+
+
+
+-final 1 : remove bloating, CRTP ,Normal to perfect forward(from wrapper of constructor),invoke and apply , tuple
+- use any in momento
+
+-- abstract factory
+-- momento
+-- singlton with smart ptr 
+-- complex
+-- double subscript
+-- decorator
+-- tuple
+-- chain of responsibility
+
+- stringview : a placeholder ,pointer pointing to a memory, no actual memory is allocated.
+
+To learn: 
+- summary of text.
+- string searching in directory.

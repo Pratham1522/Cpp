@@ -1,0 +1,7 @@
+use unordered map instead of vector
+why?? access instances in unordered map. no vector problems
+will be able to understand hashing
+
+use smart pointers.
+
+async thread should be used for functions.

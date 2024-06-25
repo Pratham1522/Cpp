@@ -1,0 +1,24 @@
+API: Application Programming Interface
+(a provision to access functionalities of "some system")
+
+
+REST API:
+    -no state (one api call has no connection with other)
+    -CRUD operation
+
+    -API EndPoint: the url which is used to make the request "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR"
+    - Request : logically Get BTC Price in INR
+            GET : READ
+            POST : CREATE
+            PUT : UPDATE
+            DELETE : DELETE
+            similar to CRUD but for types of requests
+    - Response : Whatever happens after request is made.
+    - Status Code
+    - payload
+    - headers
+    - Methods
+
+RPCs
+GRPCs
+GraphQL

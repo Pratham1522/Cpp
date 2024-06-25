@@ -1,0 +1,15 @@
+//Accept 5 numbers as input from the user
+// After inputs are recevied,parallely/consurrently perform the following option.
+
+a) Find the square of each number and store it in a result output(in 1 to 5 slots).
+b) Find the cube of each number and store it in a result output(in 1 to 5 slots).
+c) Find the factorial of each number and store it in a result output(in 1 to 5 slots).
+
+Constraint : Input numbers cannot be negative. Number cannot be more than 10. If invalid input is recevied, prompt the user to reenter the number.
+
+
+      ------>t1-------------------->
+
+start--------------->
+
+      ----------->t2------------->----------->join()----->Display()---end();      

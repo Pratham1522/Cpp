@@ -1,0 +1,50 @@
+#include <iostream> is a preprocessor statement.
+anything starting with # is a preprocessor statement.
+the cpp compiler first processes all the preprocessor statement upon getting the source code.
+
+the include keyword finds the file by name, copy all the contents in current file.
+<iostream> file contains many important funtion including std::cout and std::cin.
+
+the computer starts execting our code from the main function, so its the entry point .
+then our code gets executed line by line. 
+the default return type of main function is 0 so you dont need to return anything explicitly.
+
+the <<extraction operator pushes things into cout functions.
+
+
+#####compiler and linker video
+compiler
+- takes the source file and convert it into intermediate format called object file 
+- this object files then can be linked by linker.
+- steps in compilation :
++ first it preprocesses the file for preprocessor statements
++ then tokenization of code happens from high level to a lang in which compiler understands.
++ then a abstract synthax tree is created so that 
+#### watch later
+
+use 3 or more file to write code.
+1. declaration file : function.h   : declare all the functions to be used here.
+2. defination file : function.cpp  : actual implementation of functions.
+3. main file : main.cpp : call the declared functions here.
+
+linker links all the required file together.
+
+
+header guard  : #pragma once : instructin sent to compiler that only include this file once .
+it prevents us from including header file, multiple time into single translation unit.
+it helps us preventing multiple include in chain of includes.
+
+#ifndef _LOG_H
+#define _LOG_H
+
+void InitLog();
+void Log(const char* message);
+
+struct Player{};
+
+#endif
+it checks if symbol _LOG_H is defined, if not defined it will include the code for compilation
+old way , new way #pragma once.
+
+if the file is present in current folder use #include "file"
+else use #include <file>

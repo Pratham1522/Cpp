@@ -1,0 +1,228 @@
+#include<iostream>
+#include<string>
+#include<thread>
+#include<mutex>
+#include<functional>
+#include<sstream>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+
+string get_tid(std::thread::id id)
+{
+	stringstream sst;
+	sst << id;
+	return sst.str();
+}
+
+void fun()
+{
+	for (int x = 1; x <= 7; x++)
+	{
+		string str = "fun x = " + to_string(x) +  " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+		
+	}
+}
+
+int main1()
+{
+	std:thread t1(&fun);//starta a seperate context in which function executes
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}
+
+
+void myfun(int x1,int y1)
+{
+	for (int x = 1; x <= 7; x++)
+	{
+		string str = "myfun x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ] x1 = "+to_string(x1)+" ,y1 [ "+to_string(y1)+'\n';
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+
+	}
+}
+
+int main2()
+{
+//std:thread t1(std::bind(&myfun,10,20));//starts a seperate context in which function executes
+std:thread t1(&myfun,10,20);//starts a seperate context in which function executes
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}
+
+
+class CA
+{
+public:
+	CA()
+	{
+
+	}
+	CA(int x, int y)
+	{
+
+	}
+	void fun1()
+	{
+		for (int x = 1; x <= 7; x++)
+		{
+			string str = "CA::fun1 x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+
+		}
+	}
+
+	void myfun(int x1, int y1)
+	{
+		for (int x = 1; x <= 7; x++)
+		{
+			string str = "CA::myfun x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ] x1 = " + to_string(x1) + " ,y1 [ " + to_string(y1) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+
+		}
+	}
+};
+
+int main3()
+{
+	CA obj;
+	//std::thread t1(std::bind(&CA::fun1, obj));
+	//std::thread t1(std::bind(&CA::fun1, std::ref(obj)));
+	//std::thread t1(&CA::fun1,obj);
+	//std::thread t1(&CA::fun1,std::ref(obj));
+	std::thread t1(&CA::myfun, std::ref(obj),111,222);
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}
+
+
+
+class Func
+{
+public:
+	Func()
+	{
+
+	}
+	Func(int x, int y)
+	{
+
+	}
+	void operator()()
+	{
+		for (int x = 1; x <= 7; x++)
+		{
+			string str = "Func::operator() x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+		}
+	}
+
+	void operator()(int x1, int y1)
+	{
+		for (int x = 1; x <= 7; x++)
+		{
+			string str = "CA::operator()(int,int) x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ] x1 = " + to_string(x1) + " ,y1 [ " + to_string(y1) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+
+		}
+	}
+};
+
+int main4()
+{
+	Func fnc;
+	//std::thread t1(fnc);
+	//std::thread t1(std::ref(fnc));
+	std::thread t1(std::ref(fnc),111,222);
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}
+
+
+
+
+int main5()
+{
+	//std::thread t1(Func(12,13), 111, 222);
+	//std::thread t1(Func(12,13));
+	//std::thread t1(&CA::fun1 ,CA(12,13));
+	//std::thread t1(&CA::myfun,CA(12,13),111,222);
+
+	//std::thread t1((Func()));
+	//std::thread t1((Func()),111,222);
+	std::thread t1(&CA::myfun,(CA()),111,222);
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}
+
+
+
+int main()
+{
+	int i = 10;
+	int j = 20;
+	std::thread t1([i,j](int x1,int y1) {
+		for (int x = 1; x <= 5; x++)
+		{
+			string str = "Lambda x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+		}
+		},111,222);
+	for (int x = 1; x <= 3; x++)
+	{
+		string str = "\t\t\tMain x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+		cout << str;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	cout << "Main Waiting\n";
+	t1.join();
+	cout << "Main Done\n";
+	return 0;
+}

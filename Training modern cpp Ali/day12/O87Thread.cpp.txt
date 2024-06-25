@@ -1,0 +1,81 @@
+#include<iostream>
+#include<string>
+#include<thread>
+#include<mutex>
+#include<future>
+#include<sstream>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+namespace nm87
+{
+	string get_tid(std::thread::id id)
+	{
+		stringstream sst;
+		sst << id;
+		return sst.str();
+	}
+
+	void Sender(promise<int>&& prm)
+	{
+		for (int x = 1; x <= 10; x++)
+		{
+			string str = "Sender x = " + to_string(x) + " Tid  = [ " + get_tid(this_thread::get_id()) + " ]\n";
+			cout << str;
+			this_thread::sleep_for(chrono::seconds(1));
+			if (7 == x)
+			{
+				prm.set_value(999);
+			}
+		}
+	}
+
+	void Reciever1(shared_future<int> fut)
+	{
+		cout << "\t\tReciever1 started \n";
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\tReciever1 on \n";
+		int res = fut.get();
+		cout << "\t\tReciever1 result = " << res << '\n';
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\tReciever1 done \n";
+	}
+
+	void Reciever2(shared_future<int> fut)
+	{
+		cout << "\t\t\tReciever2 started \n";
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\t\tReciever2 on \n";
+		int res = fut.get();
+		cout << "\t\t\tReciever2 result = " << res << '\n';
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\t\tReciever2 done \n";
+	}
+
+	void Reciever3(shared_future<int> fut)
+	{
+		cout << "\t\t\t\t\tReciever3 started \n";
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\t\t\t\tReciever3 on \n";
+		int res = fut.get();
+		cout << "\t\t\t\t\tReciever3 result = " << res << '\n';
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "\t\t\t\t\tReciever3 done \n";
+	}
+
+	int main()
+	{
+		promise<int> prom;
+		shared_future<int> fut = prom.get_future();
+		thread t1(&Sender, std::move(prom));
+		thread t2(&Reciever1, fut);
+		thread t3(&Reciever2, fut);
+		thread t4(&Reciever3, fut);
+
+		t1.join();
+		t2.join();
+		t3.join();
+		t4.join();
+		cout << "Main done\n";
+		return 0;
+	}
+}

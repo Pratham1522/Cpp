@@ -1,0 +1,12 @@
+/*
+
+Create a class with producer_Input and Consumer_Operation as 2 member function.
+
+   -std::mutex
+   -std::condition_variable.
+   -value(data).
+   -malloc allocation using_result int pointer.
+
+   How many parameters does the constructor accept.
+
+*/

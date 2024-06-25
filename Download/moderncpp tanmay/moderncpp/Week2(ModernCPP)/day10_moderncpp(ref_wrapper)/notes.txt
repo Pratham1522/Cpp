@@ -1,0 +1,19 @@
+
+emp = [ Tanmay | 21 | Pune ]
+           ^
+           |
+           0x100H
+
+            Employee&
+           ----->[  [Employee*]  ]---->Employee&
+
+           Employee e1("Tanmay),21,"Pune");//object!
+           std::reference_wrapper<EMployee> ref {e1};
+
+           std::cout<<ref.get(); //return by reference(*0x100H)
+
+
+2 class:
+emp : name, id, sal, proj ka ref wrapper
+project: id, name 
+

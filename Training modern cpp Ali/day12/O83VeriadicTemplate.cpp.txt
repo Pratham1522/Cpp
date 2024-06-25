@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+#define line(msg) cout<<"___________________"#msg"____________________\n"
+
+namespace nm83
+{
+	template<typename...>
+	class MyMethod;
+
+	template<>
+	class MyMethod<>
+	{
+	public:
+		void AddFun()
+		{
+			cout << "Base AddFun\n";
+		}
+	};
+
+	template<typename T1, typename... T2>
+	class MyMethod<T1, T2...> :public MyMethod<T2...>
+	{
+	public:
+		using MyMethod<T2...>::AddFun;
+		void AddFun(T1 x, T1 y)
+		{
+			cout << "AddFun T1 = [ " << typeid(T1).name() << " ]\n";
+		}
+	};
+
+	int main()
+	{
+		MyMethod<int, double, float, char> obj;
+		obj.AddFun(10, 20);
+		obj.AddFun(1.0, 2.0);
+		obj.AddFun(1.0f, 2.0f);
+		obj.AddFun('a', 'c');
+		obj.AddFun();
+
+		return 0;
+	}
+}

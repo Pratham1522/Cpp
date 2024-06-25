@@ -1,0 +1,11 @@
+eg: class x and class y are connected by a solid line with unfilled triangular arrowhead to class y. class y
+is written in italics what does it indicate? x is abstract parent and child is Y.
+
+use cases or functions are always encircled and inside a box which is system boundary
+actor are users or stick figures that use functionality inside the boundary
+
+include: wherever arrow points then it is the prerequisite thing. the prev activity is compulsary.
+exclude: in exclude the follow up activity step is optional.
+
+may also include cardinality i.e. 1..* like one or many.
+

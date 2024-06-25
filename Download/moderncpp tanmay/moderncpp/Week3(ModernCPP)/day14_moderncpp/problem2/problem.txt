@@ -1,0 +1,26 @@
+create a function that takes one number as input
+create a func that:
+a) allocate memory on the heap for 1 integer
+b) computes square of input received and saves it in the allocated space
+c) prints the output in the console as well
+
+design a system where both the functions run in separate threads and use producer 
+consumer mechanism for coordination
+    -->input
+    -->malloc() + computesquare()-->Print()
+
+
+solution a: only 1 thread, single threaded program. no nonsense
+solution b: only 1 thread, mem functions, OOP!
+solution c: multiple threads with sync, finish input, then start 2nd function (WORST!!)
+
+solution d: multiple threads with sync,
+first thread is on input, 2nd threads performs malloc,
+then waits for input to be received. upon signal, computes square and displays result
+
+SOLUTION A:
+    start---> INput() _____>F@()----[malloc,computesquare,display]--->end!!
+
+SOLUTION D:
+    start----->input()------------------>[number is received from user]
+        ---->F@-------->[malloc][wait mode for INPUT] -----------> {calculate, square, display}---end!!

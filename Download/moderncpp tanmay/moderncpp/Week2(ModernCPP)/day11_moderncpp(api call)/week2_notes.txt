@@ -1,0 +1,48 @@
+Functional Programming
+
+-use function as values
+-flexibility : user can pass data as well as logic
+- first class functions benefits
+    a) every func has a type
+    b) func can be passed as arg
+    c) func can be returned as arg
+    d) func can be saved in other variables (CLOSURE)
+    e) func can be saved in container
+-Adaptors (higher order function bcoz itaceepts and/order returns functions)
+-function wrappers
+    - a data type (class) which can be used to attach to a callable of any
+    kind (member function, top level function, lambda function, functor, object, etc)
+    - it is improvement over function pointer syntax
+-Lambdas : Anonymous functions
+    - one time, use and throw logic
+    - you can limit logic to a scope!
+    -capture clause : [] - capture data like reference or value.
+-reference_wrappers
+    - normal references (raw references) have drawbacks
+    -raw references has no memory footprint!
+
+    -put pointers to original data into a wrapper, when use wants, dereference pointer and returns 
+    object by reference : MAGIC!!!! std::reference_wrapper!
+    -use it for: aggregation kind of problems!
+-std::bind
+    - use it to change functionality of an existing API without making modification to original API by
+        a) swap parameters
+        b) fix/hardcode some parameters
+
+//184 opening 176 training 40 in bangalore
+
+
+MAIN PROBLEM WITH THESE 3 FUNCTIONS:
+    std::bind
+    std::thread
+    std::async
+
+Problems: some functions are designed for "callby value" semantic only
+
+std::bind(&FindFirstNProjectReferneces, mySpecialContainer,
+std::ref(mySpecialContainer),std::placeholders::_2);
+
+********************************************************************
+std::ref takes some para and converts it to reference wrapper.
+********************************************************************
+

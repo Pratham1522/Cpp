@@ -1,0 +1,14 @@
+Bool : 1 byte(1 bit)
+char : 1 byte
+short : 2 bytes
+int : 4 bytes  
+long : 4 bytes
+float : 4 bytes
+double : 8 bytes
+
+
+
+int -2Billion to 2 Billion as first bit is reserved for sign , 2^31
+unsigned int is independent of sign so 2^32 thats 4Billion
+
+use a 5.5f for float else 5.5 is by default double.

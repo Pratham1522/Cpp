@@ -1,0 +1,38 @@
+initialization list
+default constructor
+parameterised constructor
+copy constructor
+explicit cosntructor
+conversion constructor
+move constructor
+forword constructor
+init constructor
+assignment operator
+constructor delegation
+destructor 
+macros
+reference and pointer
+function para passing and return evaluation
+new and delete operator
+friend function and class
+static keyword
+handler class 
+=default & =delete
+-> and * overload
+try throw catch 
+catch vable
+set_Terminate
+nested catch table
+function pointer
+virtual
+vptr and vtable
+yagni -> you arn't gonna need it.
+SRP -> single responsibility principle
+highly cohessive class
+KISS -> keep it simple and stupid
+DRY/DIE/WET/OAOO -> don't repeat yourself/Duplication is evil/We Enjoy typing/once and only once.
+std::functions
+override keyword
+conversion operator -> class to int,etc
+operator [] overloading with element class for class array.
+nested class

@@ -1,0 +1,9 @@
+#ifndef COMMERCIALOWNERTYPE_H
+#define COMMERCIALOWNERTYPE_H
+
+enum class CommercialOwnerType{
+    AGENCY,
+    INDIVIDUAL
+};
+
+#endif // COMMERCIALOWNERTYPE_H

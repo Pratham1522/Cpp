@@ -1,0 +1,7 @@
+default and delete
+operator overloading 
+naming convention
+__stdcall
+__cdecl
+__thiscall
+calling convention

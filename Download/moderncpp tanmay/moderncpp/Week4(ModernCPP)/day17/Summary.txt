@@ -1,0 +1,143 @@
+Employee
+[ 101 | "Harshit" | 9843.0f ]
+[ 102 | "Saanjh" | 7237.0f ]
+
+
+Array
+    - Need to know the size of the object.
+
+    0x100H                                           0x100H + x
+    [ 101 | "Harshit" | 9843.0f ]                    [ 102 | "Saanjh" | 7237.0f ]
+
+    Element at index position i (Employee)
+
+    Base Address + i * sizeOf(Employee);
+
+
+List
+    - Random allocation of memory
+    - [      ] <----> [     ] <-----> [ #### ] <-----> [     ]
+
+
+LinkedList
+    - Data fetching randomly is not possible. 
+
+    0x100H
+        [ nullptr  |  [ 101 | "Harshit" | 9843.0f ] ]
+    
+    0x88H
+        [ 0x100H | [ 102 | "Saanjh" | 7237.0f ] ]
+    
+    0x99H
+        [ 0x88H | [ 103 | "Ria" | 8674.0f ] | nullptr ]
+
+
+Hash Table ( DATA STRUCTURE )
+    [ 101 | "Harshit" | 9843.0f ]   0x100H
+    [ 102 | "Saanjh" | 7237.0f ]    0X188H
+    [ 201 | Riya | 76653.0f ]
+
+    - Upto mechanism for the size of the Hash Table
+    - Hash function, Hash value, and keys are used
+            -- Hash Function
+                - A mathematical formula which is applied on the "key" and produces a "hash value".
+                - It must produce a total of hash values matching with slots (expected data values)
+                  in the system.
+                
+            -- Hash Value
+                - It is the output of the hash function applied on the key. 
+
+            -- Key
+                - It is an attribute or data instance that can uniquely identify 
+                  information in the system. Key is usually attached to actually information
+                  for storage purpose. 
+
+    Hash Function: modulus 5
+    a. [ 101 | "Harshit" | 9843.0f ]
+       key: 101
+       Hash Value: 101 % 5 = 1
+       
+    // Rows of hash tables are called buckets.
+
+        [  0x100H   ]   [ 0 ]
+        [           ]   [ 1 ]
+        [           ]   [ 2 ]
+        [           ]   [ 3 ]
+        [           ]   [ 4 ]
+
+    While insertion into the the hashmap it is not neccessary that 
+    the sequence order in which the data is stored is in the 
+    same iteration as per the insertion. 
+
+    Hence the name is called Unordered Map.
+
+HOMEWORK: Figure out STL Hashing Function. 
+
+------- CPP - STL Containers ( Refer:- https://en.cppreference.com/w/cpp/container )
+
+        Sequential Containers
+            -- List, Vectors, Arrays
+
+        Container Adaptors
+            - Stacks, Queues
+
+        Associative Container
+            - Maps
+    
+        Unordered Associative Container
+            - Unordered Map
+
+
+----------------------------- HOW TO SELECT A CONTAINER FOR SOLVING PROBLEMS -----------------------------
+Do I want a fixed sized container?
+        -------> Yes [ ARRAY ]
+        -------> NO
+                 |
+                 |
+                 |
+    Do you want to store data consecutively?
+            -------> YES [ VECTOR ]
+            -------> NO 
+                     |
+                     |
+                     |
+                     |
+                     |
+        Do you want to traverse data sequentially where Nth data
+        is available only after (N-1)th data?
+                -------> YES [ LIST ]
+                -------> NO
+                         |
+                         |
+                         |
+                         |
+                         |
+            Do you want to store data with key and value association?
+                    -------> YES [ HASH MAPS: Associative Container ]
+                    ------> NO 
+                            |
+                            |
+                            |
+                            |
+                            |
+                Do you want to access data in LIFO / FIFO?
+                        -------> LIFO ( Stack ) / FIFO ( Queue ) : Container Adaptors
+                        -------> NO ( None of the above )
+                                 |
+                                 |
+                                 |
+                                 |
+                        Does order matter?
+                                -------> YES [ TREE: Associative Container ]   
+                                -------> NO [ HASH TABLES: Unordered Associative Containers ]
+
+
+Problem Question 1: A software in which data is constantly added and 
+                    previous entry and next entry matters: DOUBLY LINKED LIST 
+
+Problem Quetion 2: A software where input data is fixed previous and next elements
+                   are processes at the same time as current element: ARRAYS
+
+Problem Question 3: I want to store data by tagging it with a uniquely identifiable label. 
+                    I want to only access the first item added in the insertion order and won't access
+                    random position elements: QUEUE OF HASH MAPS ( UNORDERED MAPS )

@@ -1,0 +1,4 @@
+virtual destructor
+virtual class
+types of type casting.
+rtti

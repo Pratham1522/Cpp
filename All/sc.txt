@@ -1,0 +1,283 @@
+ctrl + Alt + T : terminal shortcut.
+ctrl + d : close the shell
+
+commands :
+% pwd : -> present working directory
+% ls : -> list all the folders and files in this directory.
+% ls -l dir1 : -> shows file n folders in level1
+% ls -ld dir1 : -> shows only about dir1 dont show inside dir1
+-a : shows also hidden files
+-l : long form
+
+
+% cd : -> change directory
+- : previous working directory (cd -)
+~ : home directory 
+
+% ps : -> list processes that r running.
+% clear : -> clear the display.
+% exit : -> close the shell
+% man command : get help for command from manual (comes bundled with os).
+% date : system date and time (current timestamp)
+% cal : calender of a month
+% ncal : calender in different orientation.     
+- $month_number $year_number : gives calender of particular month. 
+
+% free : system memory statistics (ram)
+-h : human readable
+
+%groups : which groups current user belongs to
+%file : what type of a file it is.
+
+%chmod g-w <filename>    : remove write permission from group
+g : group
+u : user
+o : others
+- : remove
++ : give
+
+%chmod 700 <filename> : change all permisissons for user,group and other in one go.
+
+%touch file1 : create a file file1
+%mkdir dir1 : create a directory dir1
+%cp file1 file2 : makes a copy of file1 in file2
+%mv file1 .. : move file1 to parent directory ,  can also give child folder name
+%mv file1 file2a : rename file1 to file2a
+%mv file1 "file 2a" : rename with space inbetween
+%rm "file 2a" : remove/delete file 2a
+%rmdir dir1 : remove directory
+%rm -r dir1 : force removing dir1 (if has some content)
+%cp -r dir1 dir2 : for copy recursion(-r) is not assumed
+%mv dir1 dir2 : for move recursion not assumed.
+
+%file file1 : tells which type of file file1 is.
+
+%alias rm="rm -i" : make alias for a command to change behavior.
+%alias : give all the aliases defined.
+%unalias rm : remove from alias list. 
+
+### knowing files better 
+% less : read content of file page by page. (gives option to exit)
+% cat : read content of file.(dumps the content on screen)(not good for big files coz of scrolling).
+% more : same as less, read content page by page.
+% wc : it tells how many (lines) (num of words) (bytes file is occupying) in files
+% head : read first 10 lines of file.
+% tail : read last 10 lines of file.
+-n number : read first/last number lines.
+
+### knowing command better.
+% which <command_name> : tells path of command in directory. (where command is located)
+% whatis <command_name> : tells brief description of command.
+% man : manual for command
+% apropos : for a keyword ,show all the commands which have the keyword in description
+% info : browse through sections and commands in those sections
+% help : shows keyword reserved for shell. (special words used by bash environment.)
+% type : tells type of command.
+
+### making symbolic links :
+% ln -s <source> <link_dir> : make link of source to link_dir/destination
+% ln <source> <destination> : hardlink (have same inode number)
+
+### file sizes : 
+% ls -s : 
+% stat : all file info , including last accessed n modified (actual + block)
+% du : gives only size in kb (block size)
+## role of block size : most command show size occupied block, not actual size
+
+% cat meminfo : gives info about memory
+% cat partitions : gives info about partitions
+
+%uname : gives os name.
+
+
+
+
+
+### user@machine:~$ ls -a : command prompt
+# user : username
+# machine : hostname 
+# ~$ : path
+# ls : command
+# -a : option
+
+### man ls
+# man : command
+# ls : argument
+
+### file system: traversing the tree.
+/ : root of file system.
+. : is current directory.
+.. : is parent directory.
+path can be abbsolute or relative.
+
+### various folders and what they store
+/bin : essential command binaries
+/boot : static files of the boot loader
+/dev : device files.
+/etc : host specific system configuration
+/lib : essential shared libraries and kernal modules
+/media : mount points for removable devices
+/mnt : mount pints
+/opt : add on application software packages
+/run : data relevant to running processes.
+/sbin : essential system binaries.
+/srv : data for services.
+/tmp : temporary files
+/usr : secondary hierarchy
+/var : variable data
+
+/usr/bin : user commmands
+/usr/lib : libraries
+/usr/local : local hierarchy
+/usr/sbin : non-vital system binaries
+/usr/share : architecure dependent data
+/usr/include : header files for c programs
+/usr/src : source code
+
+### output of ls -l command
+Eg : drwxr-xr-x 5 ghpani ghpani 12288 Nov 25 10:00 Documents
+d : filetype
+rwx : owner permissions (total 9 permissions ,'-' means particular permission is not available)
+r-x : group permissions 
+r-x : other permisssions
+5 : number of hard links
+gphani : owner
+gphani : group
+12888 : size
+Nov 25 10:00 : last modified
+Documents : filename
+
+File types in linux.
+- : Regular file (script,text file,executable ,etc)
+d : Directory 
+l : symbolic link 
+c : character file (Devices like Terminal)  ]
+b : block file (Devices like harddisks)     ] dont mess until u know what u r doing.
+s : socket file (process file which is running behind behind, which has a two way communication,listen to incoming, or send data, dynamic not static)
+p : named pipe (process file , one way comm, read but cant send data)
+
+### hardlink 
+## inode : an entry in the filesystem table about the location in storage media.
+% ls -i <name>  : find inode for file entry
+as number of subdirectories increases ,number of hardlink also increases , and each subdirectory have same inode number
+
+### file permissions 
+r : read 4
+w : write 2
+x : executable 1
+7 : all three permissions given
+5 : only read and executable
+
+### touch command genrally used to edit the last modified timestamp for a file, if file exist ,else create a file
+
+### /proc and /sys directory : only in root folder, not in disk, only in memory , know more about system and processes 
+## /proc : each produre has a folder with name as process id
+
+###############2.2 : shell variables.
+### shell variables : allows to communicate between two processes for tiny bit of information, efficiently.
+## shell variables are only available within the shell or in child process if we export shell variables.
+
+% echo : print the value of shell var or string provided (print a line of text)
+% echo hello, world
+% echo $HOME
+# if we give spaces without "" they wil be just get ignored , echo picked up words , so give a "string          hello"
+# if u start with a double quote you cant end with single quote it needs a double quote only and vice versa. //multiline command
+# use same as printf command in c language
+
+Frequently used shell variables 
+$USERNAME : gives the username of user.
+$USER : same as username
+Eg. %echo "User logged into the shell : $USERNAME"
+$HOME : gives home directory path
+$HOSTNAME : name of machine
+$PWD : gives path of present directory
+$PATH : whenever we write a command shell looks in all paths left to right if the command can be found, and $PATH gives us that paths
+
+### / is a escape character , Eg: %echo " hostname is \$HOSTNAME and user is $USERNAME" // $HOSTNAME printed as it is
+
+### commmands like printenv, env, set allows us to see what are the shell variables available.
+% printenv : list all the shell variables present
+% printenv variable : gives value of variable
+
+### commmands can also be executed using absolute path.
+%which date
+%/usr/bin/date
+
+###\command will run as default not alias
+
+$0 : gives back name of shell
+$$ : process ID of the shell
+$questionMark : return code of previously run program.
+$- : flags set in the bash shell.
+
+%ps : report a snapshot of the current processes.
+%ps --forest : tells which process has launched which other process.
+%ps -e : all processes that are running.
+%ps -f : tells parent id of process.
+
+process control :             echo $$
+USe of & to run a job in background
+fg :
+coproc :
+jobs : list what r d programs running in bg.
+top : list jobs that are hogging the cpu utilization in memory
+kill : kill processes owned by you. 
+
+Program Exit Codes     echo $?
+0 : success
+1 : failure
+2 : misuse
+126 : command cannot be executed.
+127 : command not found.
+130 : processes killed using ctrl+c
+137 : processes killed using kill -9 <pid>
+if >256 , will return |256| as exit code, if exit code value always between 0 to 256
+
+Flags set in bash    echo $-
+h : locate and hash command
+b : brace expansion enabled
+i : interactive mode
+m : job control enabled
+H : ! style history substitution enabled
+s : commands are read from stdin
+c : commands are read from arguments
+
+
+################## l2.3 :
+
+### creating a variable : myvar="value string"
+myvar : can mix alpha numeric chars and _ but cant start with numbers.
+no space around = sign
+value : number ,string or command.
+
+### exorting a variable : making it available in shell that is linked with current shell
+# export myvar="value string" //single line
+# myvar="value string"
+export myvar                  //two lines
+
+### using variable values
+echo $myvar
+echo ${myvar}
+echo "${myvar}_something"  //good idea
+
+### removing a variable
+unset myvar //remove
+myvar= //removing value of variable
+
+### test if a variable is set (available in memory)
+[[ -v myvar ]];
+echo $?
+
+[[ -z ${myvar+x} ]];
+echo $?
+
+### set default value : used if var is not set
+echo ${myvar:-"default"}   // if var is set ,display its value, else display default
+echo ${myvar:="defulat"}   // if var is set diplay its value, else set "default as its value" and display its new value.
+
+
+###
+
+
+
+

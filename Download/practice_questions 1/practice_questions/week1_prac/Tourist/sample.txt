@@ -1,0 +1,22 @@
+{
+    "C++ Class": {
+        "prefix": "cppclass",
+        "body": [
+            "#include <iostream>",
+            "",
+            "class ${TM_FILENAME_BASE} ",
+            "{",
+			"private:",
+			"\t",
+            "public:",
+            "\t${TM_FILENAME_BASE}() = default; // Default constructor",
+            "\t${TM_FILENAME_BASE}(const ${TM_FILENAME_BASE}&) = default; // Copy constructor",
+            "\t${TM_FILENAME_BASE}& operator=(const ${TM_FILENAME_BASE}&) = delete; // Copy assignment operator",
+            "\t${TM_FILENAME_BASE}(${TM_FILENAME_BASE}&&) = delete; // Move constructor",
+            "\t${TM_FILENAME_BASE}& operator=(${TM_FILENAME_BASE}&&) = delete; // Move assignment operator",
+            "\t~${TM_FILENAME_BASE}() = default; // Destructor",
+            "};"
+        ],
+        "description": "Generate a C++ class with constructors, destructor, and assignment operators using the filename as classname"
+    }
+}

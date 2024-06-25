@@ -1,0 +1,25 @@
+week2:
+lambda functions
+function wrapper
+reference wrappers
+bind
+stsd::ref
+
+week3:
+std::thread
+	theory
+	arr of threads
+	std::mutex
+	lock_guard
+	writing threads for mem func for classes
+
+std::variant
+	std::visit
+	std::hold_alternative
+
+std::optional
+	variadic template(C++11)
+	fold_expressions(C++17)
+
+
+

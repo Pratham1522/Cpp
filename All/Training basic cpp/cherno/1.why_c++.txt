@@ -1,0 +1,6 @@
+1.c++ code is still the most fast code that performs well
+2.It is widely used for game developer.it gives direct control over hardware.
+3.It is a native language,its compiler produces the machine level code for targeted os and architercture without need of any external translator.
+
+editor ->compiler (machine code) -> target platform (Execute code )
+

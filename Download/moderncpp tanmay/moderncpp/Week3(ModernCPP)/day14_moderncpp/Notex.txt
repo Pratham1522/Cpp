@@ -1,0 +1,44 @@
+scenario 1: I have multiple tasks to complete. Each task is independent . I need to utilize my system resources better !
+
+e.g: Compute square of 100 numbers, cube of same 100 numbers and factorial too.
+
+solution: std::thread
+
+scenario 2: There are 2 functions.
+
+a) A function which takes input and saves square in result.
+
+b) A function which takes input and saves cube in result.
+
+ solution: global variable result : apply mutex on result access!
+
+scenario 3: An input array has to be processed with sq and cube calculated but results are stored in the same result array of 2*N size where N is number of inputs.
+
+ solution:threads with no mutex.
+
+scenario 4: Value gets generated in a function
+
+
+
+problem 1) I need two threads. One for music sync and one for maps!
+
+music thread can execute with no issues!
+
+here asynchronous threads comes handy.
+
+
+psuedo code
+
+void mapfeature(std::string destination){
+  
+    load surround data();
+
+    find shortest path to destination();
+};
+
+std::thread t1(&musicsync);
+std::thread t1(&mapfeature);
+
+
+
+

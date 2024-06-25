@@ -1,0 +1,2 @@
+        // delete []slist;
+        // slist=nullptr;
